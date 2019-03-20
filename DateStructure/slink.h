@@ -1,6 +1,9 @@
 #pragma once
+//单链表实现
 #include"stdio.h"
-#include"Windows.h"
+#include"stdlib.h"
+
+
 typedef int Elemtype;
 typedef struct node {
 	//定义链表结构体
