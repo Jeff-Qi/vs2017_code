@@ -9,54 +9,71 @@ typedef struct {
 	ElemType *base;
 	int front;
 	int rear;
+	bool flag;
 }cqueue;
+
+bool judge(cqueue *s) {
+	if (s->front%haha == s->rear%haha) {
+		return 1;
+	}
+	else {
+		return 0;
+	}
+}
 
 void initcqueue(cqueue *s) {
 	//初始化循环队列
 	s->base = (ElemType *)malloc(haha * sizeof(ElemType));
-	for (int i = 0; i < haha; i++) {
-		s->base[i] = -1;
-	}
 	s->front = s->rear = 0;
-	printf("初始化成功");
+	s->flag = 0;
+	printf("初始化成功\n");
 }
 
-int judge(cqueue *s) {
-	//判断队列是否为假溢出
-	if ((s->front==s->rear)&&(s->base[s->rear] == -1)) {
-		return 0;
-	}
-	else {
-		return 1;
-	}
-}
 
 void push(cqueue *s,int num) {
 	//入队列
-	if (!judge(s)) {
+	if (s->flag==1&&judge(s)) {
 		printf("cqueue is full!\n");
 		return;
 	}
 	s->base[s->rear] = num;
 	s->rear = s->rear + 1;
-	if (s->front == s->rear) {
-		s->rear = s->rear%haha;
+	if (judge(s)) {
+		s->flag = 1;
 	}
 	printf("push successfully!\n");
 }
 
 void pop(cqueue *s) {
 	//出队列
-	if (s->base[s->front] == -1) {
+	if (s->flag==0&&judge(s)) {
 		printf("cqueue is empty!\n");
 		return;
 	}
 	else {
-		s->base[s->front] = -1;
-		s->front = s->front - 1;
-		if (s->front == haha) {
-			s->front = s->front%haha;
+		s->front = s->front + 1;
+		if (judge(s)) {
+			s->flag=0;
 		}
 		return;
 	}
 }
+
+int getlen(cqueue *s) {
+	//返回队列长度
+	printf("the lenth of cqueue is %d\n", (s->rear + haha - s->front) % haha);
+	return (s->rear + haha - s->front) % haha;
+}
+
+void list(cqueue *s) {
+	int i = s->front;
+	int j = getlen(s);
+	while (s->flag!=0||!judge(s)) {
+		if (i >= j) {
+			break;
+		}
+		printf("%d\t", s->base[i]);
+		i = i + 1;
+	}
+}
+
