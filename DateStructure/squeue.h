@@ -68,7 +68,7 @@ int getlen(cqueue *s) {
 void list(cqueue *s) {
 	int i = s->front;
 	int j = getlen(s);
-	while (s->flag!=0||!judge(s)) {
+	while (s->flag != 0 || !judge(s)) {
 		if (i >= j) {
 			break;
 		}
