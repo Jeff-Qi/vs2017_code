@@ -25,6 +25,7 @@
     <ClInclude Include="slink.h" />
     <ClInclude Include="squeue.h" />
     <ClInclude Include="stack.h" />
+    <ClInclude Include="tree.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

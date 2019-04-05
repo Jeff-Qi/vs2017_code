@@ -41,7 +41,7 @@ void push(cqueue *s,int num) {
 	if (judge(s)) {
 		s->flag = 1;
 	}
-	printf("push successfully!\n");
+	printf("push num %d successfully!\n",num);
 }
 
 void pop(cqueue *s) {
@@ -61,11 +61,11 @@ void pop(cqueue *s) {
 
 int getlen(cqueue *s) {
 	//返回队列长度
-	printf("the lenth of cqueue is %d\n", (s->rear + haha - s->front) % haha);
 	return (s->rear + haha - s->front) % haha;
 }
 
 void list(cqueue *s) {
+	//遍历栈
 	int i = s->front;
 	int j = getlen(s);
 	for (int k = 0; k < j&&(s->flag == 1||s->front!=s->rear); k++) {
