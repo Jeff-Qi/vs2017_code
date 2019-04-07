@@ -1,6 +1,6 @@
 #include"stdio.h"
 #include"Windows.h"
-#include"List.h"
+#include"tree.h"
 
 int main() {
 	system("pause");

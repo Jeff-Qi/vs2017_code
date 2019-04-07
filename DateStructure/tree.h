@@ -9,6 +9,14 @@ typedef struct tree {
 	struct tree * Child_R;
 }tree;
 
+void haha(tree *t) {
+	char word;
+	scanf_s("%c", &word, sizeof(char));
+	if(!t)
+	t = (tree *)malloc(sizeof(tree));	
+	t->data = word;
+}
+
 tree * creat_tree() {
 	//creat a new tree
 	tree *p;
@@ -26,20 +34,21 @@ tree * creat_tree() {
 	return p;
 }
 
-//void creat_tree(tree *t) {
-//	//creat a new tree
-//	char word;
-//	scanf_s("%c", &word, sizeof(char));
-//	if (word == '#') {
-//		t = NULL;
-//	}
-//	else {
-//		t = (tree *)malloc(sizeof(tree));
-//		t->data = word;
-//		creat_tree(t->Child_L);
-//		creat_tree(t->Child_R);
-//	}
-//}
+void creat_tree(tree **t) {
+	//creat a new tree
+	char word;
+	
+	scanf_s("%c", &word, sizeof(char));
+	if (word == '#') {
+		*t = NULL;
+	}
+	else {
+		*t = (tree *)malloc(sizeof(tree));
+		(*t)->data = word;
+		creat_tree(&((*t)->Child_L));
+		creat_tree(&((*t)->Child_R));
+	}
+}
 
 //void insert_tree(tree *t) {
 //	//insert a new node for the tree
